@@ -1,0 +1,62 @@
+<input [formControl]="control" (click)="$event.stopPropagation(); toggleItems()" (keydown)="onKeyDown($event)">
+
+<div class="items" *ngIf="items.length" [hidden]="!isItemsOpen">
+  <div class="item" 
+    *ngFor="let item of items; let index = index" 
+    [ngClass]="{ selected: cursorPosition === index}"
+    (click)="onSelect(item)" 
+    #itemElement
+  >
+    {{item}}
+  </div>
+</div>
+<div class="items items-empty" *ngIf="!items.length" [hidden]="!isItemsOpen">
+  {{noVarsMessage}}
+</div>
+
+<style>
+  :host {
+    display: inline-block;
+    position: relative;
+  }
+
+  input {
+    padding: 5px 7px;
+    font-size: 0.9rem;
+  }
+
+  input.ng-touched.ng-invalid {
+    border: solid red 1px;
+  }
+
+  input.ng-touched.ng-valid {
+    border: solid darkgreen 1px;
+  }
+
+
+  .items {
+    position: absolute;
+    background: white;
+    border: 1px solid gray;
+    left: 0;
+    right: 0;
+    max-height: 10rem;
+    overflow-y: auto;
+    z-index: 1000;
+    font-size: 0.9rem;
+  }
+
+  .items-empty {
+    padding: 4px 8px;
+    font-size: 0.9em;
+  }
+
+  .item {
+    padding: 5px 7px;
+    cursor: pointer;
+  }
+
+  .selected {
+    background: red;
+  }
+</style>

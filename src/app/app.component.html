@@ -1,0 +1,44 @@
+<h3>
+  Testing autocomplete and ng model
+</h3>
+<section>
+  <h5>ngModel</h5>
+  <div>
+    <app-autocomplete-element
+      [ngModel]="item"
+      (ngModelChange)="onItem1Change($event)"
+      [items]="items1"
+    ></app-autocomplete-element>  
+  </div>
+  <div>
+    item: {{ item}}
+  </div>
+</section>
+
+<section>
+  <h5>formControl</h5>
+  <div>
+    <app-autocomplete-element
+      [formControl]="control"
+      [items]="items2"
+    ></app-autocomplete-element>
+  </div>
+  <div>
+    control.value: {{ control.value }}
+  </div>
+</section>
+
+<section>
+  <h5>disabled</h5>
+  <div>
+    <app-autocomplete-element
+      [(ngModel)]="item"
+      [items]="items1"
+      [disabled]="true"
+    ></app-autocomplete-element>
+  </div>
+  <div>
+    control.value: {{ control.value }}
+  </div>
+</section>
+
